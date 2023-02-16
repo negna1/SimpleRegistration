@@ -19,7 +19,8 @@ final class ProfileRouterImpl: ProfileRouter {
     }
     
     func navigate2Details(hit: Hit) {
-        self.controller?.navigationController?.pushViewController(ProfileDetailsContainer.controller(hit: hit), animated: false)
+        DispatchQueue.main.async {
+            self.controller?.navigationController?.pushViewController(ProfileDetailsContainer.controller(hit: hit), animated: false)
+        }
     }
-   
 }

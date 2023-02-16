@@ -21,5 +21,4 @@ class ProfileDetailsRouterImpl: ProfileDetailsRouter {
     func navigate2() {
         print("Navigation Here")
     }
-   
 }

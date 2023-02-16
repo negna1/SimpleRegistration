@@ -9,7 +9,7 @@
 
 import Foundation
 
-public class ProfileDetailsContainer {
+final class ProfileDetailsContainer {
     static func controller(hit: Hit) -> ProfileDetailsController {
         let vc = ProfileDetailsController()
         let router = ProfileDetailsRouterImpl(controller: vc)

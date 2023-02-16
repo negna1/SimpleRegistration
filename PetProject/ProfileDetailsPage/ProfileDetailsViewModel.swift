@@ -45,13 +45,12 @@ final class ProfileDetailsViewModel: ProfileDetailsViewModelType {
 
     private func makeDataSource() {
         currentDataSource = [
-            .bigTitle(title: "Picture description"),
+            .bigTitle(title: Constant.firstSectionTitle),
             .title(hit: hit),
-            .bigTitle(title: "General Info"),
+            .bigTitle(title: Constant.secondSectionTitle),
             ] + 
         InfoType.allCases.map({CellType.infoRowItem(title: $0.title,
                                                     value: $0.getValue(hit: hit),
                                                     systemNameImage: $0.iconName)})
     }
-    
 }

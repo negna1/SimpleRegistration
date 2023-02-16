@@ -18,7 +18,6 @@ struct ProfileViewModelInput {
     let selection: AnyPublisher<ProfileController.CellModelType, Never>
 }
 
-
 typealias ProfileViewModelOutput = AnyPublisher<ProfileState, Never>
 
 enum ProfileState: Equatable {
@@ -33,10 +32,14 @@ final class ProfileViewModel: ProfileViewModelType {
     private var stateSubject = PassthroughSubject<ProfileState, Never>()
     private var currentDataSource: [CellType] = []
     private var additionalDataSource: [CellType] = []
-    private var input: ProfileViewModelInput?
-    private var hits: [Hit] = []
-    var isEmailValid: Bool = false
-    var isPasswordValid: Bool = false
+    private var isEmailValid: Bool = false
+    private var isPasswordValid: Bool = false
+    
+    private var hits: [Hit] = [] {
+        didSet {
+            self.currentDataSource = cellTypes
+        }
+    }
     private var email: String = "" {
         didSet {
             isEmailValid = email.isValidEmail()
@@ -54,7 +57,6 @@ final class ProfileViewModel: ProfileViewModelType {
     }
     
     func transform(input: ProfileViewModelInput) -> ProfileViewModelOutput {
-        self.input = input
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
         
@@ -82,20 +84,19 @@ final class ProfileViewModel: ProfileViewModelType {
 }
 
 extension ProfileViewModel {
-    var cellTypes: [CellType] {
+    private var cellTypes: [CellType] {
         self.hits.map({.title(hit: $0)})
     }
 }
 
 extension ProfileViewModel {
-    func fetchIcons() async {
+    private func fetchIcons() async {
         let request = URLRequest.icons(body: .init())
         let response = await URLSession.shared.fetchAsync(for: request, with: IconsResponse.self)
         stateSubject.send(.isLoading(show: false))
         switch response {
         case .success(let items):
             self.hits = items.hits.compactMap({$0})
-            self.currentDataSource = cellTypes
             stateSubject.send(.idle(currentDataSource))
         case .failure(let failure):
             self.stateSubject.send(.showError(failure.localizedDescription))

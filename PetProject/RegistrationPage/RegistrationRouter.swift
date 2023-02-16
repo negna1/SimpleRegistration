@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RegistrationRouter {
-    func navigate2Registration()
+    func navigate2Profile()
 }
 
 final class RegistrationRouterImpl: RegistrationRouter {
@@ -18,7 +18,9 @@ final class RegistrationRouterImpl: RegistrationRouter {
         self.controller = controller
     }
     
-    func navigate2Registration() {
-        print("Navigation Here")
+    func navigate2Profile() {
+        DispatchQueue.main.async {
+            self.controller?.navigationController?.pushViewController(ProfileContainer.profileController, animated: false)
+        }
     }
 }

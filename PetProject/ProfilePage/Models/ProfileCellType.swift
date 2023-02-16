@@ -40,8 +40,6 @@ extension ProfileController.CellModelType: Equatable {
     static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.tableCellModel.id == rhs.tableCellModel.id
     }
-    
-   
 }
 
 extension Hit: Equatable, Hashable {

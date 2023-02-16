@@ -30,10 +30,10 @@ final class StarterViewModel: StarterViewModelType {
     private var stateSubject = PassthroughSubject<StarterPageState, Never>()
     private var currentDataSource: [CellType] = []
     private var additionalDataSource: [CellType] = []
-    private var input: StarterViewModelInput?
+    private var isEmailValid: Bool = false
+    private var isPasswordValid: Bool = false
     
-    var isEmailValid: Bool = false
-    var isPasswordValid: Bool = false
+    //MARK: - Computed property -
     private var email: String = "" {
         didSet {
             isEmailValid = email.isValidEmail()
@@ -44,6 +44,7 @@ final class StarterViewModel: StarterViewModelType {
             isPasswordValid = password.isPaswordValid()
         }
     }
+    //MARK: - Initilized property -
     private let userData: LocalUsersData
     private let router: StarterRouter?
     init(userData: LocalUsersData, router: StarterRouter) {
@@ -52,7 +53,6 @@ final class StarterViewModel: StarterViewModelType {
     }
     
     func transform(input: StarterViewModelInput) -> StarterViewModelOutput {
-        self.input = input
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
         
@@ -80,13 +80,13 @@ final class StarterViewModel: StarterViewModelType {
 
 //MARK: - LogIn Call
 extension StarterViewModel {
-    func didTapLogIn() async {
+    private func didTapLogIn() async {
         guard (isEmailValid && isPasswordValid) else { return }
         let res = await userData.isUserExist(email: email, password: password)
         switch res {
-        case .success(let success):
-            if !success {
-                self.stateSubject.send(.showError("User not founc"))
+        case .success(let userExist):
+            guard userExist else {
+                self.stateSubject.send(.showError(LocalUsersData.CoreDataError.UserExist.localizedDescription))
                 return
             }
             self.router?.navigate2Profile()
@@ -124,14 +124,14 @@ extension StarterViewModel {
 
 //MARK: - Textfield view Models-
 extension StarterViewModel {
-    var emailTextField: TextFieldUI.ViewModel {
+    private var emailTextField: TextFieldUI.ViewModel {
         .init(title: Constant.email,
               textFieldType: .email) { email in
             self.email = email
         }
     }
     
-    var passwordTextField: TextFieldUI.ViewModel {
+    private var passwordTextField: TextFieldUI.ViewModel {
         .init(title: Constant.password,
               textFieldType: .password) { password in
             self.password = password

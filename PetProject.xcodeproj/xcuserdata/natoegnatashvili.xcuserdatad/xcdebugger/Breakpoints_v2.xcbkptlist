@@ -14,13 +14,13 @@
             filePath = "PetProject/ProfilePage/ProfileViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "fetchIcons()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "A633911B-D7F3-4D26-A7F9-DC401B2D4731 - 4a39074cec4328d9"
+                  uuid = "A633911B-D7F3-4D26-A7F9-DC401B2D4731 - 4a39074cec43291b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -30,12 +30,12 @@
                   urlString = "file:///Users/natoegnatashvili/Desktop/PetProject/PetProject/ProfilePage/ProfileViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "97"
-                  endingLineNumber = "97"
-                  offsetFromSymbolStart = "484">
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "468">
                </Location>
                <Location
-                  uuid = "A633911B-D7F3-4D26-A7F9-DC401B2D4731 - f86cd0f9c42142ba"
+                  uuid = "A633911B-D7F3-4D26-A7F9-DC401B2D4731 - f86cd0f9c4214378"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -45,8 +45,8 @@
                   urlString = "file:///Users/natoegnatashvili/Desktop/PetProject/PetProject/ProfilePage/ProfileViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "97"
-                  endingLineNumber = "97"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
                   offsetFromSymbolStart = "604">
                </Location>
             </Locations>
@@ -62,8 +62,8 @@
             filePath = "PetProject/ProfilePage/ProfileViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "fetchIcons()"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "PetProject/RegistrationPage/RegistrationViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "didTapRegistration()"
             landmarkType = "7">
          </BreakpointContent>
@@ -333,13 +333,13 @@
             filePath = "PetProject/StarterPage/StarterRouter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "navigate2Profile()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "10DEE542-2876-40D5-938F-EBA0EA9B5847 - 8a50911d9b1f0a7a"
+                  uuid = "10DEE542-2876-40D5-938F-EBA0EA9B5847 - 8a50911d9b1f0ab8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -349,12 +349,12 @@
                   urlString = "file:///Users/natoegnatashvili/Desktop/PetProject/PetProject/StarterPage/StarterRouter.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
                   offsetFromSymbolStart = "148">
                </Location>
                <Location
-                  uuid = "10DEE542-2876-40D5-938F-EBA0EA9B5847 - abb4e2e28abafc2d"
+                  uuid = "10DEE542-2876-40D5-938F-EBA0EA9B5847 - abb4e2e28abafcef"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -364,11 +364,27 @@
                   urlString = "file:///Users/natoegnatashvili/Desktop/PetProject/PetProject/StarterPage/StarterRouter.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
                   offsetFromSymbolStart = "24">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4CEAEE59-E1B3-44E5-A447-F280B075A0E0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PetProject/RegistrationPage/RegistrationRouter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "navigate2Profile()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

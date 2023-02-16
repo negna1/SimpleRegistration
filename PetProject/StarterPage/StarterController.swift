@@ -65,7 +65,7 @@ final class StarterController: UIViewController {
         
         let input = StarterViewModelInput()
         let output = viewModel.transform(input: input)
-
+        
         output.sink(receiveValue: {[unowned self] state in
             self.render(state)
         }).store(in: &cancellables)
@@ -82,9 +82,9 @@ final class StarterController: UIViewController {
         }
     }
 }
- 
+
 //MARK: - Data source and reload
- extension StarterController {
+extension StarterController {
     func makeDataSource() -> UITableViewDiffableDataSource<Section,  CellModelType> {
         return UITableViewDiffableDataSource(
             tableView: tableView,
@@ -95,7 +95,7 @@ final class StarterController: UIViewController {
             }
         )
     }
-
+    
     func update(with models: [CellModelType], animate: Bool) {
         DispatchQueue.main.async {
             var snapshot = NSDiffableDataSourceSnapshot<Section,  CellModelType>()
@@ -104,16 +104,16 @@ final class StarterController: UIViewController {
             self.dataSource.apply(snapshot, animatingDifferences: animate)
         }
     }
-     
-     func updateAlreadyCreated(with models: [CellModelType], animate: Bool) {
-         DispatchQueue.main.async {
-             var snapshot = self.dataSource.snapshot()
-             snapshot.deleteSections([.errorSection])
-             snapshot.appendSections([.errorSection])
-             snapshot.appendItems(models, toSection: .errorSection)
-             self.dataSource.apply(snapshot, animatingDifferences: animate)
-         }
-     }
+    
+    func updateAlreadyCreated(with models: [CellModelType], animate: Bool) {
+        DispatchQueue.main.async {
+            var snapshot = self.dataSource.snapshot()
+            snapshot.deleteSections([.errorSection])
+            snapshot.appendSections([.errorSection])
+            snapshot.appendItems(models, toSection: .errorSection)
+            self.dataSource.apply(snapshot, animatingDifferences: animate)
+        }
+    }
 }
 
 //MARK: - Alert

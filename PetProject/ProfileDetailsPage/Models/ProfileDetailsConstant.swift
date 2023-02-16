@@ -16,6 +16,8 @@ extension ProfileDetailsController {
 
 extension ProfileDetailsViewModel {
     struct Constant {
+        static let firstSectionTitle = "Picture description"
+        static let secondSectionTitle = "General description"
         static let notHaveInfo: String = "We don't have an info"
         
         static let authorInfo: String = "Author of Picture"

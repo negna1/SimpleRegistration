@@ -46,16 +46,17 @@ final class RegistrationViewModel: RegistrationViewModelType {
             isEmailValid = email.isValidEmail()
         }
     }
+    
     private var password: String = "" {
-            didSet {
-                isPasswordValid = password.isPaswordValid()
-            }
+        didSet {
+            isPasswordValid = password.isPaswordValid()
+        }
     }
     
     private var birthDate: Date? {
-            didSet {
-                isAgeValid = (Date() - (birthDate ?? Date())) > 18 && (Date() - (birthDate ?? Date())) < 99
-            }
+        didSet {
+            isAgeValid = (Date() - (birthDate ?? Date())) > 18 && (Date() - (birthDate ?? Date())) < 99
+        }
     }
     
     private let router: RegistrationRouter?
@@ -84,26 +85,26 @@ final class RegistrationViewModel: RegistrationViewModelType {
             .textField(viewModel: passwordTextField),
             .dateView(viewModel: agePicker),
             primaryButton
-            ]
+        ]
     }
     
     private func makeAdditionalDataSource() -> [CellType] {
-       return  [!isEmailValid ? emailError : nil, !isPasswordValid ? passwordError : nil,
+        return [!isEmailValid ? emailError : nil, !isPasswordValid ? passwordError : nil,
                 !isAgeValid ? ageError : nil].compactMap({$0})
     }
 }
 
 extension RegistrationViewModel {
-    func didTapRegistration() async {
+    private func didTapRegistration() async {
         let user = LocalUsersData.User(email: email,
                                        password: password,
                                        birthDate: birthDate ?? Date())
         
-        self.stateSubject.send(.loading(showIndicator: false))
         let res = await usersData.saveUser(object: user)
+        self.stateSubject.send(.loading(showIndicator: false))
         switch res {
         case .success(_):
-            self.stateSubject.send(.showSuccess(Constant.userCreated))
+            self.router?.navigate2Profile()
         case .failure(let failure):
             self.stateSubject.send(.showError(failure.localizedDescription))
         }
@@ -126,8 +127,6 @@ extension RegistrationViewModel {
     
     private var primaryButton: CellType {
         .button(viewModel: .init(title: Constant.registration, action: {
-            
-               
             self.stateSubject.send(.validation(self.makeAdditionalDataSource()))
             guard self.everythingIsValid else { return }
             self.stateSubject.send(.loading(showIndicator: true))
@@ -139,31 +138,24 @@ extension RegistrationViewModel {
 }
 
 extension RegistrationViewModel {
-    var emailTextField: TextFieldUI.ViewModel {
+    private var emailTextField: TextFieldUI.ViewModel {
         .init(title: Constant.email,
               textFieldType: .email) { email in
             self.email = email
         }
     }
     
-    var passwordTextField: TextFieldUI.ViewModel {
+    private var passwordTextField: TextFieldUI.ViewModel {
         .init(title: Constant.password,
               textFieldType: .password) { password in
             self.password = password
         }
     }
     
-    var agePicker: DatePickerUI.ViewModel {
+    private var agePicker: DatePickerUI.ViewModel {
         .init(title: Constant.ageTitle) { date in
             self.birthDate = date
         }
     }
 }
 
-extension Date {
-    static func - (lhs: Date, rhs: Date) -> TimeInterval {
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year], from: rhs, to: lhs)
-        return Double(components.year ?? 0)
-    }
-}

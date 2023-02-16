@@ -20,7 +20,9 @@ final class StarterRouterImpl: StarterRouter {
     }
     
     func navigate2Registration() {
-        self.controller?.navigationController?.pushViewController(RegistrationContainer.registrationController, animated: false)
+        DispatchQueue.main.async {
+            self.controller?.navigationController?.pushViewController(RegistrationContainer.registrationController, animated: false)
+        }
     }
     
     func navigate2Profile() {
